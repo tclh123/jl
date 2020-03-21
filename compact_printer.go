@@ -38,15 +38,18 @@ type FieldFmt struct {
 var DefaultCompactPrinterFieldFmt = []FieldFmt{{
 	Name:         "level",
 	Transformers: []Transformer{Truncate(4), UpperCase, ColorMap(LevelColors)},
+	Finders:      []FieldFinder{ByNames("level", "levelname")},
 }, {
 	Name:    "time",
 	Finders: []FieldFinder{ByNames("timestamp", "time")},
 }, {
 	Name:         "thread",
 	Transformers: []Transformer{Ellipsize(16), Format("[%s]"), RightPad(18), ColorSequence(AllColors)},
+	Finders:      []FieldFinder{ByNames("thread", "threadName")},
 }, {
 	Name:         "logger",
 	Transformers: []Transformer{Ellipsize(20), Format("%s|"), LeftPad(21), ColorSequence(AllColors)},
+	Finders:      []FieldFinder{ByNames("logger", "loggingName")},
 }, {
 	Name:    "message",
 	Finders: []FieldFinder{ByNames("message", "msg")},
